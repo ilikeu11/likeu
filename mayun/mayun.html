@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>适中速度广告弹窗</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #000;
+            overflow: hidden;
+            font-family: "微软雅黑", sans-serif;
+        }
+        .popup {
+            position: absolute;
+            padding: 11px 15px;
+            border-radius: 3px;
+            color: #000;
+            font-size: 13px;
+            opacity: 0;
+            animation: pop 0.15s ease-out forwards;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+        }
+        @keyframes pop {
+            0% { opacity: 0; transform: scale(0.4); }
+            100% { opacity: 0.92; transform: scale(1); }
+        }
+        /* 隐藏音频播放器控件 */
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 音频标签：自动播放+循环播放，替换src为你的音频文件路径 -->
+    <audio autoplay loop>
+        <source src="your-audio.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放
+     <!-- 补充闭合标签 -->
+
+    <script>
+        const messages = [
+            "马云", "彭倩"
+        ];
+        const colors = [
+            "#ffebcd", "#f0fff0", "#e6e6fa", "#fff0f5",
+            "#f5f5dc", "#fffacd", "#f5fffa", "#f0f8ff"
+        ];
+
+        setInterval(() => {
+            const popup = document.createElement("div");
+            popup.className = "popup";
+            popup.textContent = messages[Math.floor(Math.random() * messages.length)];
+            popup.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            popup.style.left = `${Math.random() * 85}%`;
+            popup.style.top = `${Math.random() * 85}%`;
+            document.body.appendChild(popup);
+        }, 35);
+    </script>
+</body>
+</html>
